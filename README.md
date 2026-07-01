@@ -2,16 +2,16 @@
 
 ## Specs:
 **Control-Plane:**
-	- CPU: 2vCPU
-	- MEM: 8GiB
-	- DISK: 32GB
-	- SO: Ubuntu Server 22.04
+- CPU: 2vCPU
+- MEM: 8GiB
+- DISK: 32GB
+- SO: Ubuntu Server 22.04
 
 **Worker(s):**
-	- CPU: 2vCPU
-	- MEM: 4GiB
-	- DISK: 32GB
-	- SO: Ubuntu Server 22.04
+- CPU: 2vCPU
+- MEM: 4GiB
+- DISK: 32GB
+- SO: Ubuntu Server 22.04
 
 ---
  
