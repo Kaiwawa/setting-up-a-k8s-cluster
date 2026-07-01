@@ -163,7 +163,7 @@ kubeadm token create --print-join-command
 ---
 
 #### 6. Extra (Life Savers)
-##### Kubectl completion
+#### Kubectl completion
 **Bash:**
 ```bash
 kubectl completion bash > ~/.kube/completion.bash.inc
