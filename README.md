@@ -1,13 +1,13 @@
 # Installing Kubernetes (containerd + calico)
 
 ## Specs:
-#### Control-Plane:
+**Control-Plane:**
 	- CPU: 2vCPU
 	- MEM: 8GiB
 	- DISK: 32GB
 	- SO: Ubuntu Server 22.04
 
-#### Worker(s):
+**Worker(s):**
 	- CPU: 2vCPU
 	- MEM: 4GiB
 	- DISK: 32GB
