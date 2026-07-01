@@ -1,6 +1,4 @@
-# Instalando Kubernetes (containerd + calico)
-
----
+# Installing Kubernetes (containerd + calico)
 
 ## Specs:
 #### Control-Plane:
@@ -41,7 +39,7 @@ swapoff -a
 # Go to /etc/fstab and remove the swap from there too!!!
 ```
 
-#### -> After, reboot the system
+**-> After, reboot the system**
 
 ---
 
@@ -83,7 +81,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-##### K8S after v1.22 uses systemd as cgroup driver for default, so we don't have to force it.
+**K8S after v1.22 uses systemd as cgroup driver for default, so we don't have to force it.**
 
 ---
 
@@ -98,22 +96,22 @@ ssh 192.168.50.222 #Worker-2
 ```
 
 ### ⚠️These steps are on Control-Plane only⚠️
-#### Kube init:
+**Kube init:**
 ```bash
 kubeadm init --apiserver-advertise-address=[K8S Control-Plane] --pod-network-cidr=[CIDR to Internal Network]
 ```
-##### In my case I used:
+**In my case I used:**
 ```bash
 kubeadm init --apiserver-advertise-address=192.168.50.220 --pod-network-cidr=192.168.55.0/24
 ```
 
-##### If was everything fine, now we gonna do:
+**If was everything fine, now we gonna do:**
 ```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-##### ⚠️ Remember to save the kubejoin for later!
+****⚠️ Remember to save the kubejoin for later!****
 
 ---
 
@@ -124,7 +122,7 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0
 cd /etc/kubernetes
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml -O
 ```
-##### Edit the custom-resource.yaml using the pod-network-cidr if you haven't changed leave it as default
+**Edit the custom-resource.yaml using the pod-network-cidr if you haven't changed leave it as default**
 ```bash
 vim custom-resources.yaml
 
@@ -134,7 +132,7 @@ To
 > cidr: 192.168.55.0/24
 ```
 
-##### And apply the custom-resource:
+**And apply the custom-resource:**
 ```kubectl apply -f custom-resources.yaml```
 #### ⚡ Bazinga!
 ```
@@ -148,7 +146,7 @@ csi-node-driver-fd7rz                     2/2     Running   0          3m38s
 ---
 
 #### 5. Adding the workes to the cluster
-##### Run the kubeadm join in the workers, and to check if they was added to cluster:
+**Run the kubeadm join in the workers, and to check if they was added to cluster:**
 ```bash
 $ kubectl get nodes
 
@@ -158,7 +156,7 @@ k8s-worker-1   NotReady   <none>          8s    v1.36.2
 k8s-worker-2   NotReady   <none>          13s   v1.36.2
 ```
 
-##### If you didn't save the join:
+**If you didn't save the join:**
 ```
 kubeadm token create --print-join-command
 ```
@@ -166,7 +164,7 @@ kubeadm token create --print-join-command
 
 #### 6. Extra (Life Savers)
 ##### Kubectl completion
-##### Bash:
+**Bash:**
 ```bash
 kubectl completion bash > ~/.kube/completion.bash.inc
 printf "
